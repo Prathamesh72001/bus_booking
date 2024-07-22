@@ -1,3 +1,4 @@
+import 'package:bus_booking_app/view/screens/buses%20list/busess_list_screen.dart';
 import 'package:bus_booking_app/view/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case homeScreen:
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
@@ -40,6 +41,10 @@ class AppRouter {
 
   static Future<void> replaceWith(BuildContext context, String routeName) {
     return Navigator.pushReplacementNamed(context, routeName);
+  }
+
+  static void pop(BuildContext context) {
+    Navigator.pop(context);
   }
 
   static SlideTransition transitionAnimation(

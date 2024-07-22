@@ -30,10 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-                height: 200,
-                width: 200,
-                child: Lottie.asset(Assets.splash_animation)),
+            Image(image: AssetImage(Assets.app_icon),height: 200, width: 200,),  // Replace with your app icon
+                
             const CommonText(
                 text: Strings.app_name,
                 color: BrandColors.primary,

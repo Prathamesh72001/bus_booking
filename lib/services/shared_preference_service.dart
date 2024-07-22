@@ -9,4 +9,7 @@ class Preference {
   static Future<bool?> getLoginStatus() async => _preferences?.getBool("isLoggedIn");
   static void setLoginStatus(bool value) => _preferences!.setBool("isLoggedIn", value);
 
+  //user
+  static Future<String?> getUser() async => _preferences?.getString("user");
+  static void setUser(String value) => _preferences!.setString("user", value);
 }

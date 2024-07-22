@@ -32,7 +32,7 @@ class _CommonButtonState extends State<CommonButton> {
             color: BrandColors.secondary,
             boxShadow: const [
               BoxShadow(
-                  color: BrandColors.shadow, blurRadius: 10, spreadRadius: 10)
+                  color: BrandColors.shadow, blurRadius: 10, spreadRadius: 3)
             ]),
         child: widget.isLoading
             ? const LoaderWidget()

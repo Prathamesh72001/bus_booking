@@ -1,0 +1,93 @@
+{ "buses":[
+    {
+      "id": "1",
+      "busName": "ABC Travels",
+      "route": "Mumbai to Pune",
+      "departureTime": "10:00 AM",
+      "arrivalTime": "02:00 PM",
+      "fare": 500,
+      "availableSeats": 30
+    },
+    {
+      "id": "2",
+      "busName": "XYZ Travels",
+      "route": "Delhi to Jaipur",
+      "departureTime": "11:00 AM",
+      "arrivalTime": "03:00 PM",
+      "fare": 600,
+      "availableSeats": 20
+    },
+    {
+      "id": "3",
+      "busName": "Fast Bus Services",
+      "route": "Bangalore to Chennai",
+      "departureTime": "09:00 AM",
+      "arrivalTime": "02:00 PM",
+      "fare": 550,
+      "availableSeats": 25
+    },
+    {
+      "id": "4",
+      "busName": "Sunrise Travels",
+      "route": "Hyderabad to Bangalore",
+      "departureTime": "08:30 AM",
+      "arrivalTime": "01:30 PM",
+      "fare": 650,
+      "availableSeats": 15
+    },
+    {
+      "id": "5",
+      "busName": "Metro Express",
+      "route": "Kolkata to Bhubaneswar",
+      "departureTime": "07:00 AM",
+      "arrivalTime": "11:00 AM",
+      "fare": 400,
+      "availableSeats": 35
+    },
+    {
+      "id": "6",
+      "busName": "Travel Plus",
+      "route": "Ahmedabad to Surat",
+      "departureTime": "06:00 AM",
+      "arrivalTime": "09:00 AM",
+      "fare": 300,
+      "availableSeats": 40
+    },
+    {
+      "id": "7",
+      "busName": "Elite Travel Co.",
+      "route": "Jaipur to Udaipur",
+      "departureTime": "12:00 PM",
+      "arrivalTime": "04:00 PM",
+      "fare": 550,
+      "availableSeats": 22
+    },
+    {
+      "id": "8",
+      "busName": "Royal Buses",
+      "route": "Delhi to Agra",
+      "departureTime": "05:00 PM",
+      "arrivalTime": "08:00 PM",
+      "fare": 450,
+      "availableSeats": 18
+    },
+    {
+      "id": "9",
+      "busName": "GoGreen Travels",
+      "route": "Pune to Nashik",
+      "departureTime": "03:00 PM",
+      "arrivalTime": "07:00 PM",
+      "fare": 400,
+      "availableSeats": 28
+    },
+    {
+      "id": "10",
+      "busName": "Swift Journeys",
+      "route": "Chennai to Coimbatore",
+      "departureTime": "01:00 PM",
+      "arrivalTime": "05:00 PM",
+      "fare": 500,
+      "availableSeats": 30
+    }
+  ]
+  }

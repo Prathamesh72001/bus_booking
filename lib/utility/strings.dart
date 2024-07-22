@@ -21,5 +21,6 @@ class Strings{
   static const String date_of_journey="Date Of Journey";
   static const String selct_to="Select Departing location";
   static const String selct_from="Select Destination location";
+  static const String selct_date_of_journey="Select Date Of Journey";
   static const String search_bus="Search Buses";
 }

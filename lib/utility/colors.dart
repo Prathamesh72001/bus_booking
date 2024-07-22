@@ -5,7 +5,7 @@ class BrandColors {
   static const Color secondary = Colors.white;
   static const Color text = Colors.black;
   static const Color text_accent = Colors.white30;
-  static const Color shadow = Colors.white12;
+  static const Color shadow = Colors.grey;
   // ignore: constant_identifier_names
   static Color? primary_accent = Colors.red[300];
 }

@@ -46,6 +46,6 @@ class _MyAppState extends State<MyApp> {
   void init() async {
     await Preference.init();
     await Firebase.initializeApp();
-    await FirebaseAppCheck.instance.activate(androidProvider: AndroidProvider.debug);
+    await FirebaseAppCheck.instance.activate(androidProvider: AndroidProvider.debug,);
   }
 }

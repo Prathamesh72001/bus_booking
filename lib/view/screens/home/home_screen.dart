@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const DashboardFragment(),
     const MyBookingsFragment(),
     const HelpFragment(),
-    const MyProfileFragment()
+    ProfileFragment()
   ];
 
   @override
@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: Container(
         height: kBottomNavigationBarHeight+5,
         margin: const EdgeInsets.all(25),
+        decoration: const BoxDecoration(boxShadow: [BoxShadow(color: BrandColors.shadow,blurRadius: 50,spreadRadius: 3)]),
         child: ClipRRect(borderRadius: BorderRadius.circular(20),
           child: BottomNavigationBar(
               showSelectedLabels: true,
@@ -84,18 +85,21 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       appBar: PreferredSize(
           preferredSize: Size(MediaQuery.of(context).size.width, kToolbarHeight),
-          child:  Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Image(image: AssetImage(Assets.app_icon),height: 75, width: 75,),  // Replace with your app icon
-              const CommonText(
-                text:Strings.app_name,
-                fontWeight: FontWeight.bold,
-                color: BrandColors.primary,
-              ),
-            ],
+          child:  Container(
+            decoration: const BoxDecoration(boxShadow: [BoxShadow(color: BrandColors.shadow,blurRadius: 50,spreadRadius: 3),],color: BrandColors.secondary),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Image(image: AssetImage(Assets.app_icon),height: 75, width: 75,),  // Replace with your app icon
+                const CommonText(
+                  text:Strings.app_name,
+                  fontWeight: FontWeight.bold,
+                  color: BrandColors.primary,
+                ),
+              ],
+            ),
           ),
     ));
   }

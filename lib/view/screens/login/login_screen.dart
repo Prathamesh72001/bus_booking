@@ -33,7 +33,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _phoneNumberController = TextEditingController();
   bool enableButton = false;
-  bool isFocus = true;
+  bool isFocus = false;
   bool isLoading = false;
   bool canResend = false;
   String otpCode = "";
@@ -102,215 +102,228 @@ class _LoginScreenState extends State<LoginScreen> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-                height: 150,
-                width: 150,
-                child: Lottie.asset(Assets.splash_animation)),
-            const Padding(
-              padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: CommonText(
-                text: Strings.title_login,
-                color: BrandColors.text,
-                fontSize: 45,
-                fontFamily: 'baloo',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: CommonText(
-                text: Strings.subtitle_login,
-                color: BrandColors.text,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.red[50]!,
-                      Colors.red[100]!,
-                      Colors.red[200]!,
-                      BrandColors.primary
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: BrandColors.shadow,
-                        blurRadius: 10,
-                        spreadRadius: 10)
-                  ]),
-              margin: const EdgeInsets.all(25),
-              padding: const EdgeInsets.all(25),
+            SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: IntlPhoneField(
-                      dropdownTextStyle: const TextStyle(
-                        color: BrandColors.text,
-                        fontSize: 15,
-                      ),
-                      decoration: const InputDecoration(
-                          hintText: Strings.hint_mobile,
-                          hintStyle: TextStyle(color: BrandColors.text),
-                          labelText: Strings.mobile,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(),
-                          ),
-                          counterText: ""),
-                      initialCountryCode: 'IN',
-                      controller: _phoneNumberController,
-                      autofocus: isFocus,
-                      style: CommonText.defaultStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: BrandColors.text),
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(10),
-                      ],
-                      validator: (value) {
-                        try {
-                          if (value!.completeNumber.isEmpty ||
-                              !RegExp(
-                                r'^(?:[+0]9)?[0-9]{10}$',
-                                multiLine: false,
-                              ).hasMatch(value!.completeNumber)) {
-                            return Strings.error_mobile;
-                          }
-                        } catch (e) {
-                          return Strings.error_mobile;
-                        }
-                      },
-                      keyboardType: TextInputType.phone,
-                      onChanged: (value) {
-                        phoneNo = value;
-                        setState(() {});
-                        if (_phoneNumberController.text.length == 10) {
-                          enableButton = true;
-                          setState(() {});
-                        } else {
-                          enableButton = false;
-                          setState(() {});
-                        }
-                      },
+                  SizedBox(
+                      height: 150,
+                      width: 150,
+                      child: Lottie.asset(Assets.splash_animation)),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: CommonText(
+                      text: Strings.title_login,
+                      color: BrandColors.text,
+                      fontSize: 45,
+                      fontFamily: 'baloo',
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  _isOtpVisible
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 20),
-                            PinCodeTextField(
-                              autoFocus: true,
-                              backgroundColor: Colors.transparent,
-                              appContext: context,
-                              pastedTextStyle: const TextStyle(
-                                  color: BrandColors.text,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'poppins'),
-                              length: 6,
-                              animationType: AnimationType.fade,
-                              pinTheme: PinTheme(
-                                selectedColor: Colors.grey,
-                                shape: PinCodeFieldShape.box,
-                                activeColor: BrandColors.primary,
-                                inactiveColor: BrandColors.primary,
-                                borderRadius: BorderRadius.circular(5),
-                                fieldHeight: 50,
-                                fieldWidth: 40,
-                                activeFillColor: Colors.transparent,
-                              ),
-                              enablePinAutofill: true,
-                              cursorColor: BrandColors.primary,
-                              animationDuration:
-                                  const Duration(milliseconds: 300),
-                              controller: _codeController,
-                              keyboardType: TextInputType.number,
-                              onCompleted: (v) {
-                                otpCode = _codeController.text.toString();
-
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: CommonText(
+                      text: Strings.subtitle_login,
+                      color: BrandColors.text,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.red[50]!,
+                            Colors.red[100]!,
+                            Colors.red[200]!,
+                            BrandColors.primary
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: BrandColors.shadow,
+                              blurRadius: 10,
+                              spreadRadius: 3)
+                        ]),
+                    margin: const EdgeInsets.all(25),
+                    padding: const EdgeInsets.all(25),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: IntlPhoneField(
+                            dropdownTextStyle: const TextStyle(
+                              color: BrandColors.text,
+                              fontSize: 15,
+                            ),
+                            decoration: const InputDecoration(
+                                hintText: Strings.hint_mobile,
+                                hintStyle: TextStyle(color: BrandColors.text),
+                                labelText: Strings.mobile,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(),
+                                ),
+                                counterText: ""),
+                            initialCountryCode: 'IN',
+                            controller: _phoneNumberController,
+                            autofocus: isFocus,
+                            style: CommonText.defaultStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: BrandColors.text),
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(10),
+                            ],
+                            validator: (value) {
+                              try {
+                                if (value!.completeNumber.isEmpty ||
+                                    !RegExp(
+                                      r'^(?:[+0]9)?[0-9]{10}$',
+                                      multiLine: false,
+                                    ).hasMatch(value!.completeNumber)) {
+                                  return Strings.error_mobile;
+                                }
+                              } catch (e) {
+                                return Strings.error_mobile;
+                              }
+                            },
+                            keyboardType: TextInputType.phone,
+                            onChanged: (value) {
+                              phoneNo = value;
+                              setState(() {});
+                              if (_phoneNumberController.text.length == 10) {
                                 enableButton = true;
                                 setState(() {});
-                              },
-                              onChanged: (value) {
-                                setState(() {
-                                  enableButton =
-                                      _codeController.text.length == 6
-                                          ? true
-                                          : false;
-                                });
-                              },
-                              beforeTextPaste: (text) {
-                                return true;
-                              },
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                const CommonText(
-                                    text: 'Didn\'t receive code?',
-                                    fontSize: 15,
-                                    textAlign: TextAlign.center),
-                                const Spacer(),
-                                TextButton(
-                                    onPressed: canResend
-                                        ? () {
-                                            _codeController.text = "";
-                                            // getOtp(
-                                            //     _phoneNumberController.text,
-                                            //     country!,
-                                            //     countryId!);
-                                          }
-                                        : null,
-                                    child: canResend
-                                        ? const CommonText(
-                                            text: 'Resend',
-                                            fontSize: 15,
-                                            color: BrandColors.text,
-                                            textAlign: TextAlign.center)
-                                        : CommonText(
-                                            text:
-                                                'Resend OTP in $resendTimeText',
-                                            fontSize: 14,
-                                            color: BrandColors.text,
-                                            fontWeight: FontWeight.normal,
-                                            textAlign: TextAlign.center)),
-                              ],
-                            ),
-                          ],
-                        )
-                      : const EmptyWidget(),
-                  CommonButton(
-                      isEnabled: enableButton,
-                      onTap: () {
-                        if (enableButton) {
-                          isLoading = true;
-                          setState(() {});
-                          if (_isOtpVisible) {
-                            _signInWithPhoneNumber();
-                          } else {
-                            _verifyPhone();
-                          }
-                        }
-                      },
-                      isLoading: isLoading,
-                      buttonText:
-                          _isOtpVisible ? Strings.login : Strings.send_otp)
+                              } else {
+                                enableButton = false;
+                                setState(() {});
+                              }
+                            },
+                          ),
+                        ),
+                        _isOtpVisible
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 20),
+                                  PinCodeTextField(
+                                    autoFocus: true,
+                                    backgroundColor: Colors.transparent,
+                                    appContext: context,
+                                    pastedTextStyle: const TextStyle(
+                                        color: BrandColors.text,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'poppins'),
+                                    length: 6,
+                                    animationType: AnimationType.fade,
+                                    pinTheme: PinTheme(
+                                      selectedColor: Colors.grey,
+                                      shape: PinCodeFieldShape.box,
+                                      activeColor: BrandColors.primary,
+                                      inactiveColor: BrandColors.primary,
+                                      borderRadius: BorderRadius.circular(5),
+                                      fieldHeight: 50,
+                                      fieldWidth: 40,
+                                      activeFillColor: Colors.transparent,
+                                    ),
+                                    enablePinAutofill: true,
+                                    cursorColor: BrandColors.primary,
+                                    animationDuration:
+                                        const Duration(milliseconds: 300),
+                                    controller: _codeController,
+                                    keyboardType: TextInputType.number,
+                                    onCompleted: (v) {
+                                      otpCode = _codeController.text.toString();
+            
+                                      enableButton = true;
+                                      setState(() {});
+                                    },
+                                    onChanged: (value) {
+                                      setState(() {
+                                        enableButton =
+                                            _codeController.text.length == 6
+                                                ? true
+                                                : false;
+                                      });
+                                    },
+                                    beforeTextPaste: (text) {
+                                      return true;
+                                    },
+                                  ),
+                                  const SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      const CommonText(
+                                          text: 'Didn\'t receive code?',
+                                          fontSize: 15,
+                                          textAlign: TextAlign.center),
+                                      const Spacer(),
+                                      TextButton(
+                                          onPressed: canResend
+                                              ? () {
+                                                  _codeController.text = "";
+                                                  // getOtp(
+                                                  //     _phoneNumberController.text,
+                                                  //     country!,
+                                                  //     countryId!);
+                                                }
+                                              : null,
+                                          child: canResend
+                                              ? const CommonText(
+                                                  text: 'Resend',
+                                                  fontSize: 15,
+                                                  color: BrandColors.text,
+                                                  textAlign: TextAlign.center)
+                                              : CommonText(
+                                                  text:
+                                                      'Resend OTP in $resendTimeText',
+                                                  fontSize: 14,
+                                                  color: BrandColors.text,
+                                                  fontWeight: FontWeight.normal,
+                                                  textAlign: TextAlign.center)),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            : const SizedBox(
+                                height: 50,
+                              ),
+                        CommonButton(
+                            isEnabled: enableButton,
+                            onTap: () {
+                              if (enableButton) {
+                                isLoading = true;
+                                setState(() {});
+                                if (_isOtpVisible) {
+                                  _signInWithPhoneNumber();
+                                } else {
+                                  _verifyPhone();
+                                }
+                              }
+                            },
+                            isLoading: isLoading,
+                            buttonText:
+                                _isOtpVisible ? Strings.login : Strings.send_otp)
+                      ],
+                    ),
+                  ),
                 ],
               ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(25),
+              child: CommonText(text: "v1.0"),
             )
           ],
         ),
@@ -322,7 +335,7 @@ class _LoginScreenState extends State<LoginScreen> {
     await FirebaseService.auth.verifyPhoneNumber(
       phoneNumber: phoneNo.completeNumber,
       verificationCompleted: (PhoneAuthCredential credential) async {
-        isLoading=false;
+        isLoading = false;
         setState(() {});
         enableOTPUI();
         await FirebaseService.auth
@@ -334,20 +347,20 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       },
       verificationFailed: (FirebaseAuthException e) {
-        isLoading=false;
+        isLoading = false;
         setState(() {});
         Utils.getSnackBar(
             context, "${Strings.verification_failed} : ${e.message}");
       },
       codeSent: (String verificationId, [int? forceResendingToken]) {
         _verificationId = verificationId;
-        isLoading=false;
+        isLoading = false;
         setState(() {});
         enableOTPUI();
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         _verificationId = verificationId;
-        isLoading=false;
+        isLoading = false;
         setState(() {});
         enableOTPUI();
       },
@@ -356,7 +369,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _signInWithPhoneNumber() async {
     final code = _codeController.text.trim();
-    isLoading=true;
+    isLoading = true;
     setState(() {});
     if (_verificationId != "") {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -376,21 +389,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _checkIfUserExists() async {
     String userId = phoneNo.completeNumber;
-    DatabaseEvent event = await FirebaseService.database.child(userId).once();
+    DatabaseEvent event =
+        await FirebaseService.database.child('users').child(userId).once();
 
     if (!event.snapshot.exists) {
       _uploadUserData(userId);
     }
 
-    isLoading=false;
+    isLoading = false;
     setState(() {});
     Preference.setLoginStatus(true);
+    Preference.setUser(phoneNo.completeNumber);
     Utils.getSnackBar(context, Strings.verification_success);
     AppRouter.replaceWith(context, AppRouter.homeScreen);
   }
 
   void _uploadUserData(String userId) async {
-    await FirebaseService.database.child(userId).set({
+    await FirebaseService.database.child('users').child(userId).set({
       'name': "New User",
       'email': "",
       'profile_image': "",

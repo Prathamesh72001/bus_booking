@@ -44,6 +44,8 @@ dependencies:
 
   intl_phone_field: ^3.0.1
 
+  telephony: any
+
   alt_sms_autofill: ^1.0.0
 
   pin_code_fields: ^7.4.0
@@ -57,6 +59,22 @@ dependencies:
   firebase_storage: ^11.0.4
 
   firebase_app_check: any
+
+  carousel_slider: ^4.1.1
+
+  url_launcher: ^6.1.7
+
+  http: ^0.13.5
+
+  intl: ^0.17.0
+
+  images_picker: ^1.2.11
+
+  path_provider: any
+
+  webviewx: ^0.2.2
+
+
 
 dev_dependencies:
   flutter_test:

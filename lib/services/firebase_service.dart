@@ -4,6 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseService {
   static final FirebaseAuth auth = FirebaseAuth.instance;
-  static final DatabaseReference database = FirebaseDatabase.instance.ref().child('users');
+  static final DatabaseReference database = FirebaseDatabase.instance.ref();
   static final FirebaseStorage storage = FirebaseStorage.instance;
 }
